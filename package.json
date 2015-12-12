@@ -1,0 +1,17 @@
+{
+  "name": "MetaData",
+  "version": "0.0.1",
+  "description": "A website that will help you with 'Whats the Phrase' and 'Words With Friends'",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "~3.0.1",
+	  "react": "~>0.13.3",
+    "tsd": "~0.6.5"
+  },
+  "engines": {
+    "node": ">=0.8.x"
+  }
+}
