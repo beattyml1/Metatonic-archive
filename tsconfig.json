@@ -9,8 +9,11 @@
         "sourceMap": true,
         "outDir": "built/bin"
     },
+    "exclude": ["node_modules"],
     "filesGlobal": [
-        "*.ts",
-        "*.tsx"
+        "src/*.ts",
+        "src/*.tsx",
+        "src/**/*.ts",
+        "src/**/*.tsx"
     ]
 }
