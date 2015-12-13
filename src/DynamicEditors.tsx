@@ -2,43 +2,10 @@ import UI = require("./UI");
 import * as Controls from "./Controls";
 import {__, $$} from "./Extensions";
 import React = require('react');
+import {OptionItem} from './OtherClasses'
+import {autoPickHint, getType, isFullWidth, isInput} from './Logic'
 // import ReactDataGrid = require('react-data-grid');
 /// <reference path="./typings/react/react.d.ts" />
- const inputTypes = [];
- const fullWidthTypes = [];
- const typeMap = {
-   "select": {
-     "inlineList": "radio",
-     "dropdown": "dropdown",
-     "popup": "popup-select-one"
-   },
-   "multi-select": {
-     "inlineList": "checklist",
-     "dropdown": "multi-select",
-     "popup": "popup-multi-select"
-   }
- }
-
-class OptionItem {
-  key: string;
-  value: string;
-}
-const autoPickHint = (multiline: boolean, options: OptionItem[]) => 
-  "dropdown";
-  
-const isInput = (type: string) =>
-  inputTypes.indexOf(type) > -1;
-  
-const isFullWidth = (type: string) =>
-  fullWidthTypes.indexOf(type) > -1;
-  
-function getType(dataType: string, optionHint: string, multiline: boolean, options: OptionItem[]) {
-  var controlMap = typeMap[dataType];
-      optionHint = optionHint === "auto" ? autoPickHint(multiline, options) : optionHint;
-  var control = controlMap ? controlMap[optionHint] as string : dataType;
-      control = controlMap.indexOf("multi-select") || dataType === "text" ? `mutliLine-${control}` : control;
-  return control;
-}
 
 class DocumentEditor extends React.Component<any, any> {
 	render() { return ( 
