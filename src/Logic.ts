@@ -1,7 +1,7 @@
 import {typeMap, inputTypes, fullWidthTypes} from './Constants';
-import {OptionItem} from './OtherClasses'
+import {OptionItem, OptionsSource} from './OtherClasses'
 
-export function autoPickHint(multiline: boolean, options: OptionItem[]) {
+export function autoPickHint(multiline: boolean, optionsSource: OptionsSource) {
 	return "dropdown";
 }
   
@@ -13,9 +13,9 @@ export function isFullWidth(type: string) {
 	return fullWidthTypes.indexOf(type) > -1;
 }
   
-export function getType(dataType: string, optionHint: string, multiline: boolean, options: OptionItem[]) {
+export function getType(dataType: string, optionHint: string, multiline: boolean, optionsSource: OptionsSource) {
   var controlMap = typeMap[dataType];
-      optionHint = optionHint === "auto" ? autoPickHint(multiline, options) : optionHint;
+      optionHint = optionHint === "auto" ? autoPickHint(multiline, optionsSource) : optionHint;
   var control = controlMap ? controlMap[optionHint] as string : dataType;
       control = controlMap.indexOf("multi-select") || dataType === "text" ? `mutliLine-${control}` : control;
   return control;

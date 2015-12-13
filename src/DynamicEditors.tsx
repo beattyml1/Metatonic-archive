@@ -1,5 +1,6 @@
 import UI = require("./UI");
 import * as Controls from "./Controls";
+import * as Editors from "./ComplexControls";
 import {__, $$} from "./Extensions";
 import React = require('react');
 import {OptionItem} from './OtherClasses'
@@ -38,7 +39,10 @@ class EntityFieldsEditor extends React.Component<any, any> {
 
 class FieldEditorForDataType extends React.Component<any, any> {
   render() {
-    return (<FieldEditorControl {...this.props} type={getType(this.props.dataType, this.props.optionHint, this.props.multiline, this.props.options)}/>); 
+    return (
+      <FieldEditorControl {...this.props} 
+        options={this.props.opstionSource.getOptions()} 
+        type={getType(this.props.dataType, this.props.optionHint, this.props.multiline, this.props.optionsSource)}/>); 
   }
 }
 
@@ -48,7 +52,7 @@ class FieldEditorControl extends React.Component<any, any> {
     return (
         isInput(type) ? <InputEditor {...this.props} /> :
         isFullWidth(type) ? <InputEditor {...this.props} /> :
-        type === "checbox" ? <Controls.CheckBoxEditor {...this.props} /> :
+        type === "checbox" ? <Editors.CheckBoxEditor {...this.props} /> :
         type === "record-edit" ? <EntityFieldsEditor {...this.props} /> :
         // type === "table-edit" ? <DataGrid {...this.props} /> :
         null); 
@@ -57,9 +61,9 @@ class FieldEditorControl extends React.Component<any, any> {
 
 class InputEditor extends React.Component<any, any> {
   render() { return (
-      <Controls.InputFieldLabelAndContainer {...this.props}>
+      <Editors.InputFieldLabelAndContainer {...this.props}>
         <InputForType {...this.props} />
-      </Controls.InputFieldLabelAndContainer>
+      </Editors.InputFieldLabelAndContainer>
   );}
 }
 
@@ -67,7 +71,7 @@ class InputForType extends React.Component<any, any> {
   render() { 
     var type = this.props.type;
     return (
-      type === "text" ? <Controls.TextBox {...this.props} /> :
+      type === "text" ? <Controls.TextInput {...this.props} /> :
       type === "date" ? <Controls.DateInput {...this.props} /> :
       type === "currency" ? <Controls.CurrencyInput {...this.props} /> :
       type === "decimal" ? <Controls.DecimalInput {...this.props} /> :
@@ -81,9 +85,9 @@ class InputForType extends React.Component<any, any> {
 
 class FullWidthFieldEditor extends React.Component<any, any> {
   render() { return (
-      <Controls.FullWidthFieldLabelAndContainer {...this.props}>
+      <Editors.FullWidthFieldLabelAndContainer {...this.props}>
         <FullWidthFieldInputForType {...this.props} />
-      </Controls.FullWidthFieldLabelAndContainer>
+      </Editors.FullWidthFieldLabelAndContainer>
   );}
 }
 
@@ -91,8 +95,8 @@ class FullWidthFieldInputForType extends React.Component<any, any> {
   render() { 
     var type = this.props.type;
     return (
-        type === "radio" ? <Controls.RadioSelect {...this.props} /> :
-        type === "checklist" ? <Controls.CheckList {...this.props} /> :
+        type === "radio" ? <Editors.RadioSelect {...this.props} /> :
+        type === "checklist" ? <Editors.CheckList {...this.props} /> :
         type === "multi-line-text" ? <Controls.MultiLineTextBox {...this.props} /> :
       null
     );}
