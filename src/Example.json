@@ -1,0 +1,22 @@
+{
+	records: [
+		{
+			recordTypeName: "title",
+			recordLabelSingular: "Post",
+			recordLabelPlural: "Post,"
+			fields: [
+				{
+					fieldName: "title",
+					label: "Title",
+					type: "string"
+				},
+				{
+					fieldName: "date",
+					label: "Date",
+					userEnterd:  false,
+					type: "Date"
+				}
+			]
+		}
+	]
+}

@@ -1,7 +1,13 @@
 import {isMobile} from "./UI";
 import React = require('react');
-import {TextBox, NumericInput} from './BaseControls'
+import {TextBox, NumericInput } from './BaseControls'
 /// <reference path="./typings/react/react.d.ts" />
+
+export class HiddenField extends React.Component<any, any> {
+  render() { return ( 
+    <input value={this.props.value} name={this.props.name} type="hidden" />
+  );}
+}
 
 export class TextInput extends React.Component<any, any> {
   render() { return (
