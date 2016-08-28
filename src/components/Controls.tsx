@@ -53,6 +53,12 @@ export class IntegerInput extends React.Component<any, any> {
   );}
 }
 
+export class CheckBoxInput extends React.Component<any, any> {
+  render() { return (
+    <CheckBox {...this.props}/>
+  );}
+}
+
 export class CheckBox extends React.Component<any, any> {
   render() { return (
     <input checked={this.props.value} type="checkbox" className="input numeric-input integer-input" required={this.props.required}/>
@@ -82,7 +88,7 @@ export class MultiLineTextBox extends React.Component<any, any> {
       name={this.props.name}
       data-type="multi-line-text"
       className="text-area"
-      required={this.props.required}  
+      required={this.props.required}
       maxLength={this.props.maxLength}>
     </textarea>
   );}

@@ -1,7 +1,7 @@
 import UI = require("../UI");
 import * as Controls from "./Controls";
 import * as Editors from "./ComplexControls";
-import {__, $$} from "../Extensions";
+import {__, $$, Util} from "../Extensions";
 import React = require('react');
 import {OptionItem, OptionsSource} from '../classes/OtherClasses'
 import {autoPickHint, getType, isFullWidth, isInput} from '../Logic'
@@ -18,42 +18,39 @@ export class FieldEditorForDataType extends React.Component<EditorProps, any> {
   render() {
     let metaData = this.props.metaData;
 		let inputId = `${this.props.parentId}-${this.props.metaData.fieldName}-input`;
-    return (
-      <FieldEditorControl {...this.props}
-        inputId={inputId}
-        options={metaData.optionsSource.getOptions()}
-        type={getType(metaData.dataType, metaData.optionHint, metaData.multiLine, metaData.optionsSource)}/>);
+    let control = getType(metaData.dataType, metaData.optionHint, metaData.multiLine, metaData.optionsSource);
+    let options = metaData.optionsSource.getOptions();
+    let props = Util.merge(this.props, { actions: [], inputId, options, type: control});
+    return this.getControl(control, props);
   }
-}
-
-export class FieldEditorControl extends React.Component<ControlProps, any> {
-  render() {
-    var type = this.props.type;
+  
+  getControl(type: string, props) {
     return (
-        isInput(type) ?
-          <InputEditor {...this.props} /> :
-        isFullWidth(type) ?
-          <InputEditor {...this.props} /> :
-        type === "checbox" ?
-          <Editors.CheckBoxEditor {...this.props} /> :
-        type === "record-select" ?
-          <EntitySelector {...this.props} /> :
-        type === "custom-record-edit" ?
-          <FormSection id={this.props.inputId} label={this.props.metaData.label} hlevel={this.props.hlevel+1}>
-            <CustomEntityEditor {...this.props} hlevel={this.props.hlevel+1} />
-          </FormSection> :
-        type === "record-edit" ?
-          <FormSection id={this.props.inputId} label={this.props.metaData.label} hlevel={this.props.hlevel+1}>
-            <EntityFieldsEditor {...this.props} hlevel={this.props.hlevel+1} />
-          </FormSection> :
-        null);
-  }
+      isInput(type) ?
+        <InputEditor {...props}/> :
+      isFullWidth(type) ?
+        <InputEditor {...props}/> :
+      type === "record-select" ?
+        <EntitySelector {...props} /> :
+      type === "custom-record-edit" ?
+        <FormSection id={props.inputId} label={props.metaData.label} hlevel={props.hlevel+1}>
+          <CustomEntityEditor {...props} hlevel={props.hlevel+1}/>
+        </FormSection> :
+      type === "record-edit" ?
+        <FormSection id={props.inputId} label={props.metaData.label} hlevel={props.hlevel+1}>
+          <EntityFieldsEditor {...props} hlevel={props.hlevel+1}/>
+        </FormSection> :
+      null);
+    }
 }
 
 export class EntitySelector extends React.Component<any, any> {
   render() {
     return (
-        <Editors.InputFieldLabelAndContainer inputId={this.props.inputId} label={this.props.metaData.label} actions={[]}>
+        <Editors.InputFieldLabelAndContainer
+          inputId={this.props.inputId}
+          label={this.props.metaData.label}
+          actions={this.props.actions.append}>
 
         </Editors.InputFieldLabelAndContainer>
     );
@@ -85,7 +82,7 @@ export class EntityFieldsEditor extends React.Component<any, any> {
 	render() { return (
     <div>
       {this.props.fields.map(field =>
-        <FieldEditorForDataType {...field} />
+        <FieldEditorForDataType {...field} parentId={`${this.props.parentId}-${this.props.name}`} />
       )}
     </div>);}
 }

@@ -29,6 +29,7 @@ export class InputForType extends React.Component<any, any> {
       type === "integer" ? <Controls.IntegerInput {...this.props} /> :
       type === "email" ? <Controls.EmailInput {...this.props} /> :
       type === "tel" ? <Controls.PhoneInput {...this.props} /> :
+      type === "checkbox" ? <Controls.CheckBoxInput {...this.props} /> :
       type === "dropdown" ? <Controls.Dropdown {...this.props} /> :
       null);
   }
