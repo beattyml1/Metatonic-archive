@@ -1,5 +1,5 @@
 {
-  "name": "Metabolic",
+  "name": "Metatonic",
   "version": "0.0.1",
   "description": "",
   "main": "src/app.js",
@@ -11,7 +11,8 @@
     "tsd": "^0.6.5",
     "react-data-grid": "*",
     "react-bootstrap": "*",
-    "react-bootstrap-datetimepicker": "*"
+    "react-bootstrap-datetimepicker": "*",
+    "react-bootstrap-date-picker": "*"
   },
   "devDependencies": {
     "typescript-jest": "*"
