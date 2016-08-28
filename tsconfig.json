@@ -1,11 +1,10 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
         "jsx": "react",
         "noImplicitAny": false,
         "removeComments": true,
         "preserveConstEnums": true,
-        "out": "built/local/tsc.js",
+        "outDir": "built/local",
         "sourceMap": true,
         "outDir": "built/bin"
     },

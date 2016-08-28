@@ -1,5 +1,5 @@
- export const inputTypes = [];
- export const fullWidthTypes = [];
+ export const inputTypes = [ 'text' ];
+ export const fullWidthTypes = [ 'multi-line-text' ];
  export const typeMap = {
    "select": {
      "inlineList": "radio",
