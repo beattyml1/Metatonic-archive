@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "jest"
   },
   "dependencies": {
 	  "react": "~>0.13.3",
@@ -15,9 +16,22 @@
     "react-bootstrap-date-picker": "*"
   },
   "devDependencies": {
-    "typescript-jest": "*"
+    "ts-jest": "*",
+    "jest-cli": "*",
+    "typescript": "2.0"
   },
   "engines": {
     "node": ">=0.8.x"
+  },
+"jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
   }
 }
