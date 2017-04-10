@@ -22,7 +22,7 @@
     "jest-cli": "*",
     "ts-jest": "*",
     "typescript": "2.1",
-    "express": "~>3.10.7"
+    "express": "~>4.15.2"
   },
   "engines": {
     "node": ">=0.8.x"
