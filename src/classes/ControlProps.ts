@@ -1,6 +1,6 @@
 import Events from './Events';
 import FieldMetaData from './FieldMetaData';
-export default class ControlProps {
+export default class ControlProps implements ControlContext {
   value: any;
   events: Events;
   metaData: FieldMetaData;
@@ -10,4 +10,10 @@ export default class ControlProps {
   options: Array<any>;
   hlevel: number;
   actions: Array<any>;
+}
+
+export interface ControlContext {
+    parentId: string;
+    inputId: string;
+    hlevel: number;
 }

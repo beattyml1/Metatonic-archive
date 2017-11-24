@@ -17,9 +17,15 @@ export class Transformer<T> {
 	_<Tout>(transform: (T)=>Tout): Transformer<Tout> {
 		return new Transformer(transform(this.$));
 	}
+	with<Tout>(transform: (T)=>Tout): Transformer<Tout> {
+		return new Transformer(transform(this.$));
+	}
 }
 
 export function __<T>(value: T):Transformer<T> {
+	return new Transformer(value);
+}
+export function transfrom<T>(value: T):Transformer<T> {
 	return new Transformer(value);
 }
 

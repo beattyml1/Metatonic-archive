@@ -1,23 +1,42 @@
-import UI = require("../UI");
-import * as Controls from "./Controls";
-import * as Editors from "./ComplexControls";
-import {__, $$, Util} from "../Extensions";
+import UI = require("UI");
+import * as Controls from "components/Controls";
+import InputFieldLabelAndContainer from "components/LabeledFieldContainers/InputFieldLabelAndContainer";
+import {__, $$, Util} from "Extensions";
 import React = require('react');
-import {OptionItem, OptionsSource} from '../classes/OtherClasses'
-import {autoPickHint, getType, isFullWidth, isInput} from '../Logic'
-import {InputEditor} from './inputEditor';
-import { FullWidthFieldEditor } from './FullWidthEditor';
-import EditorProps from '../classes/EditorProps';
-import ControlProps from '../classes/ControlProps';
-import { CustomControls }  from '../services/CustomControlsService';
-import FormSection from './FormSection';
+import {OptionItem, OptionsSource} from 'classes/OtherClasses'
+import {autoPickHint, getType, isFullWidth, isInput} from 'Logic'
+import InputEditor from 'components/editors/inputEditor';
+import { FullWidthFieldEditor } from 'components/editors/FullWidthEditor';
+import EditorProps from 'classes/EditorProps';
+import ControlProps from 'classes/ControlProps';
+import { CustomControls }  from 'services/CustomControlsService';
+import FormSection from 'components/SupportingControls/FormSection';
 // import ReactDataGrid = require('react-data-grid');
-/// <reference path="./typings/react/react.d.ts" />
+/// <reference path="components/typings/react/react.d.ts" />
+
+export class EntitySelector extends React.Component<any, any> {
+  render() {
+    return (
+        <InputFieldLabelAndContainer
+          inputId={this.props.inputId}
+          label={this.props.metaData.label}
+          actions={this.props.actions.append}>
+
+        </InputFieldLabelAndContainer>
+    );
+  }
+}
+
+export class CustomEntityEditor extends React.Component<any, any> {
+  render() {
+    return <div></div>;
+  }
+}
 
 export class FieldEditorForDataType extends React.Component<EditorProps, any> {
   render() {
     let metaData = this.props.metaData;
-		let inputId = `${this.props.parentId}-${this.props.metaData.fieldName}-input`;
+    let inputId = `${this.props.parentId}-${this.props.metaData.fieldName}-input`;
     let control = getType(metaData.dataType, metaData.optionHint, metaData.multiLine, metaData.optionsSource);
     let options = metaData.optionsSource.getOptions();
     let props = Util.merge(this.props, { actions: [], inputId, options, type: control});
@@ -40,27 +59,8 @@ export class FieldEditorForDataType extends React.Component<EditorProps, any> {
         <FormSection id={props.inputId} label={props.metaData.label} hlevel={props.hlevel+1}>
           <EntityFieldsEditor {...props} hlevel={props.hlevel+1}/>
         </FormSection> :
-      null);
+      <div></div>);
     }
-}
-
-export class EntitySelector extends React.Component<any, any> {
-  render() {
-    return (
-        <Editors.InputFieldLabelAndContainer
-          inputId={this.props.inputId}
-          label={this.props.metaData.label}
-          actions={this.props.actions.append}>
-
-        </Editors.InputFieldLabelAndContainer>
-    );
-  }
-}
-
-export class CustomEntityEditor extends React.Component<any, any> {
-  render() {
-    return <div></div>;
-  }
 }
 
 class DocumentEditor extends React.Component<any, any> {

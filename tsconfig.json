@@ -1,13 +1,17 @@
 {
     "compilerOptions": {
+	"module": "amd",
         "jsx": "react",
         "noImplicitAny": false,
         "removeComments": true,
         "preserveConstEnums": true,
         "outDir": "built/local",
         "sourceMap": true,
-        "outDir": "built/bin"
+        "outDir": "built/bin",
+        "strictNullChecks": true,
+        "target": "es2016"
     },
+
     "exclude": ["node_modules"],
     "filesGlobal": [
         "src/*.ts",

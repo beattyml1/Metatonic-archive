@@ -8,7 +8,7 @@ export class TextBox extends React.Component<any, any> {
       value={this.props.value}
       name={this.props.name}
       required={this.props.required}
-      type={this.props.type}
+      type="text"
       data-type={this.props.dataType}
       maxLength={this.props.maxLength}
     />
@@ -21,7 +21,7 @@ export class NumericInput extends React.Component<any, any> {
       value={this.props.value}
       name={this.props.name}
       required={this.props.required}
-      type={this.props.type}
+      type="number"
       data-type={this.props.dataType}
       max={this.props.max}
       min={this.props.min}
@@ -37,7 +37,7 @@ export class MaskedDropDownTextBox extends React.Component<any, any> {
         value={this.props.value}
         name={this.props.name}
         required={this.props.required}
-        type={this.props.type}
+        type="text"
         data-type={this.props.dataType}
       />
       <a className={`icon ${this.props.iconClass}`} onClick={this.openDropDown()}  ></a>
