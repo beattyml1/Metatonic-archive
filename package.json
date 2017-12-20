@@ -9,24 +9,24 @@
     "test": "tsc & jest"
   },
   "dependencies": {
-    "react": "~>15.4.2",
-    "react-dom": "~>15.4.2",
-    "tsd": "^0.6.5",
-    "react-data-grid": "*",
-    "react-bootstrap": "*",
-    "react-bootstrap-datetimepicker": "*",
-    "react-bootstrap-date-picker": "*",
     "inversify": "~>4.3",
-    "reflect-metadata": "~>0.1"
+    "react": "~>15.4.2",
+    "react-bootstrap": "*",
+    "react-bootstrap-date-picker": "*",
+    "react-bootstrap-datetimepicker": "*",
+    "react-data-grid": "*",
+    "react-dom": "~>15.4.2",
+    "react-modal-bootstrap": "^1.1.1",
+    "reflect-metadata": "~>0.1",
+    "tsd": "^0.6.5"
   },
   "devDependencies": {
     "@types/core-js": "^0.9.35",
     "jest": "*",
     "jest-cli": "*",
     "ts-jest": "*",
-    "typescript": "2.1",
-    "express": "~>4.15.2",
-    "typescript": "~>2.4.1"
+    "typescript": "~>2.4.1",
+    "express": "~>4.15.2"
   },
   "engines": {
     "node": ">=0.8.x"
